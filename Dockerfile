@@ -3,7 +3,7 @@ FROM ubuntu:latest
 COPY . .
 #install vim git pyhton pip 
 RUN apt-get -y update
-RUN  apt-get install -y $(cat requirements/ubuntu_dependencies.txt )
+RUN apt-get install -y $(cat requirements/ubuntu_dependencies.txt )
 
 #install les dependecies pyhon
 RUN pip3 install -r requirements/requirements.txt
@@ -15,6 +15,17 @@ RUN git config --global user.password "Camtaro2302"
 WORKDIR /workspace
 RUN git init
 RUN git clone https://github.com/camikasa/workspace.git
+
+#set up venv 
+
+RUN apt-get install -y python3-venv
+RUN mkdir deep_learning
+RUN cd deep_learning
+RUN python3 -m venv deep_learning
+RUN deep_learning/bin/pip3 install ipykernel 
+RUN ipython kernel install --user --name=deep_learning
+RUN deep_learning/bin/pip3 install tensorFlow scikit-learn
+
 
 EXPOSE 8000
 
