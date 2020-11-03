@@ -3,12 +3,11 @@ import pandas as pd
 import sklearn
 import joblib
 
-model = joblib.load("tweeter_classifier.joblib")
+model = joblib.load("trained_classifier.joblib")
 txt = st.text_input("Enter text :", "")
 
 
 if (txt) :
-    txt = re.sub('[^A-Za-z]+', ' ', txt.lower())
     Y_pred = model.predict_proba([txt])[0]
 
     if Y_pred[0] > Y_pred[1] and Y_pred[0]> Y_pred[2]:

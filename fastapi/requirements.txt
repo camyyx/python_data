@@ -1,0 +1,10 @@
+numpy
+seaborn
+pandas
+sklearn
+stop_words
+joblib
+streamlit
+uvicorn
+uvicorn
+fastapi

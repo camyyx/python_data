@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import re 
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.multiclass import OneVsRestClassifier
@@ -12,7 +11,7 @@ from joblib import dump
 df = pd.read_csv("labels.csv")
 df.dropna()
 df.drop_duplicates()
-df['tweet'] = df['tweet'].apply(lambda tweet: re.sub('[^A-Za-z]+', ' ', tweet.lower()))
+df['tweet'] = df['tweet'].astype('str') 
 clf = make_pipeline(
     TfidfVectorizer(stop_words=get_stop_words('en')),
     OneVsRestClassifier(SVC(kernel='linear', probability=True))
