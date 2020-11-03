@@ -34,3 +34,9 @@ EXPOSE 8000
 # no browser found comme dans tous les cas le but est d'accéder au notebook en dehors du container on ajoute --no-browser",
 #il m'a dit run as root is not recommended donc j'ajoute --allow-root
 ENTRYPOINT ["jupyter", "notebook", "--no-browser", "--allow-root", "--port=8000", "--ip=0.0.0.0"]
+
+#Create network 
+#docker network create --driver=bridge --subnet=192.168.0.0/16 node_net
+# /16 est le masque du sous réseau du network il limite le nombre d'ips valides pour une ip donnée et donc le nombre de systèmes pouvant disposer d'une IP dans le meme réseau 
+#ici le masque est 255.255.0.0 ce qui signifie que le nombre d'ips valides est 256x256 donc 65 536 ips différents 
+#
